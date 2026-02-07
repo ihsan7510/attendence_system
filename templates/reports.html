@@ -14,7 +14,7 @@
                         <select class="form-select" id="class_id" name="class_id" required>
                             <option value="">Select Class...</option>
                             {% for class in classes %}
-                            <option value="{{ class.id }}" {% if selected_class|int=class.id %}selected{% endif %}>{{
+                            <option value="{{ class.id }}" {% if selected_class|int==class.id %}selected{% endif %}>{{
                                 class.name }}</option>
                             {% endfor %}
                         </select>
