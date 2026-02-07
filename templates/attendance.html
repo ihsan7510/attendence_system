@@ -24,8 +24,9 @@
                         <select class="form-select" id="subject_id" name="subject_id" required>
                             <option value="">Select Subject...</option>
                             {% for subject in subjects %}
-                            <option value="{{ subject.id }}" {% if selected_subject|int==subject.id %}selected{% endif
-                                %}>{{ subject.name }} ({{ subject.class_val.name }})</option>
+                            <option value="{{ subject.id }}" data-class-id="{{ subject.class_id }}" {% if
+                                selected_subject|int==subject.id %}selected{% endif %}>{{ subject.name }} ({{
+                                subject.class_val.name }})</option>
                             {% endfor %}
                         </select>
                     </div>

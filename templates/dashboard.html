@@ -59,7 +59,8 @@
             <div class="card-body">
                 <h5 class="card-title">Reports</h5>
                 <p class="card-text">View attendance statistics.</p>
-                <a href="{{ url_for('view_reports') }}" class="btn btn-outline-success">View Reports</a>
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                    data-bs-target="#reportSelectModal">View Reports</button>
             </div>
         </div>
     </div>
@@ -88,6 +89,29 @@
         </div>
     </div>
 </div> -->
+
+    <!-- Report Selection Modal -->
+    <div class="modal fade" id="reportSelectModal" tabindex="-1" aria-labelledby="reportSelectModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reportSelectModalLabel">Select Report Type</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-grid gap-3">
+                        <a href="{{ url_for('view_reports') }}" class="btn btn-outline-primary btn-lg">
+                            <i class="bi bi-people-fill me-2"></i>Class Report
+                        </a>
+                        <a href="{{ url_for('search_student') }}" class="btn btn-outline-success btn-lg">
+                            <i class="bi bi-person-badge me-2"></i>Individual Student Report
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <style>
         .hover-shadow:hover {

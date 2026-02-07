@@ -27,7 +27,6 @@ class Student(db.Model):
     name = db.Column(db.String(100), nullable=False)
     roll_number = db.Column(db.String(20), nullable=False)
     class_id = db.Column(db.Integer, db.ForeignKey('class.id'), nullable=False)
-    # Ensure roll number is unique per class
     __table_args__ = (db.UniqueConstraint('roll_number', 'class_id', name='_roll_class_uc'),)
 
 class Attendance(db.Model):
@@ -36,8 +35,8 @@ class Attendance(db.Model):
     class_id = db.Column(db.Integer, db.ForeignKey('class.id'), nullable=False)
     subject_id = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
     date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
-    status = db.Column(db.String(10), nullable=False, default='Present') # Present, Absent
+    status = db.Column(db.String(10), nullable=False, default='Present') 
     
-    student = db.relationship('Student', backref='attendance_records')
-    subject = db.relationship('Subject', backref='attendance_records')
-    class_val = db.relationship('Class', backref='attendance_records')
+    student = db.relationship('Student', backref=db.backref('attendance_records', cascade='all, delete-orphan'))
+    subject = db.relationship('Subject', backref=db.backref('attendance_records', cascade='all, delete-orphan'))
+    class_val = db.relationship('Class', backref=db.backref('attendance_records', cascade='all, delete-orphan'))
