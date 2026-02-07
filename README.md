@@ -8,10 +8,12 @@ A web-based application built with Flask for managing student attendance, classe
 - **Dashboard**: Quick overview of the system.
 - **Class Management**: Add and delete classes.
 - **Subject Management**: Add and delete subjects assigned to specific classes.
-- **Student Management**: Add and delete students, with roll number validation.
+- **Student Management**: Add, edit, and delete students, with roll number validation.
+- **Search Functionality**: Search for students by name or roll number.
 - **Attendance Marking**: Mark student attendance (Present/Absent) for a specific date, class, and subject.
-- **Attendance Reports**: View detailed attendance reports with percentage calculations.
-- **Export to Excel**: Download attendance reports as Excel files.
+- **Class Attendance Reports**: View detailed attendance reports for a whole class with percentage calculations.
+- **Individual Student Reports**: View and export attendance reports for individual students.
+- **Export to Excel**: Download class-wise and student-wise attendance reports as Excel files.
 - **Teacher Management (Admin Only)**: Add, edit, and delete teacher accounts.
 
 ## Tech Stack
