@@ -59,8 +59,14 @@
             <div class="card-body">
                 <h5 class="card-title">Reports</h5>
                 <p class="card-text">View attendance statistics.</p>
-                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
-                    data-bs-target="#reportSelectModal">View Reports</button>
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('view_reports') }}" class="btn btn-outline-primary">
+                        <i class="bi bi-people-fill me-2"></i>Class Report
+                    </a>
+                    <a href="{{ url_for('search_student') }}" class="btn btn-outline-success">
+                        <i class="bi bi-person-badge me-2"></i>Individual Student Report
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -78,45 +84,14 @@
     </div>
     {% endif %}
 
-    <!-- Export Data
-    <div class="col-md-4">
-        <div class="card h-100 text-center hover-shadow">
-            <div class="card-body">
-                <h5 class="card-title">Export</h5>
-                <p class="card-text">Download data as Excel.</p>
-                <a href="#" class="btn btn-outline-secondary">Export to Excel</a>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-    <!-- Report Selection Modal -->
-    <div class="modal fade" id="reportSelectModal" tabindex="-1" aria-labelledby="reportSelectModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="reportSelectModalLabel">Select Report Type</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="d-grid gap-3">
-                        <a href="{{ url_for('view_reports') }}" class="btn btn-outline-primary btn-lg">
-                            <i class="bi bi-people-fill me-2"></i>Class Report
-                        </a>
-                        <a href="{{ url_for('search_student') }}" class="btn btn-outline-success btn-lg">
-                            <i class="bi bi-person-badge me-2"></i>Individual Student Report
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
     <style>
         .hover-shadow:hover {
-            box_shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
             transition: box-shadow 0.3s ease-in-out;
         }
     </style>
     {% endblock %}
+
+    {% block modals %}{% endblock %}

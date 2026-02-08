@@ -11,7 +11,7 @@
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ url_for('manage_students') }}">
-                    <!-- <input type="hidden" name="class_id" value="{{ selected_class }}"> -->
+                    <input type="hidden" name="class_id" value="{{ selected_class }}">
 
                     <!-- <div class="mb-3">
                         <label class="form-label">Class</label>
@@ -38,7 +38,7 @@
 
     <div class="col-md-8">
         <div class="card shadow">
-            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="mb-0">Student List</h5>
                 <div>
                     <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
@@ -98,10 +98,71 @@
     {% endif %}
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Auto-show class selection modal if no class is selected
+        {% if not selected_class %}
+        var classModal = new bootstrap.Modal(document.getElementById('classSelectModal'));
+        classModal.show();
+        {% endif %}
+
+        // Handle Edit Button Click
+        const editButtons = document.querySelectorAll('.edit-btn');
+        const editForm = document.getElementById('editStudentForm');
+        const editNameInput = document.getElementById('edit_name');
+        const editRollInput = document.getElementById('edit_roll');
+        const editClassIdInput = document.getElementById('edit_class_id');
+
+        editButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const studentId = this.getAttribute('data-id');
+                const name = this.getAttribute('data-name');
+                const roll = this.getAttribute('data-roll');
+                const classId = this.getAttribute('data-class');
+
+                editForm.action = `/edit_student/${studentId}`;
+                editNameInput.value = name;
+                editRollInput.value = roll;
+                editClassIdInput.value = classId;
+            });
+        });
+    });
+</script>
+
+<style>
+    /* Force Modal Styles - Inline to bypass cache */
+    #classSelectModal .modal-content,
+    #editStudentModal .modal-content {
+        background-color: #ffffff !important;
+        /* Force white background */
+        color: #2d3748 !important;
+        /* Force dark text */
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    [data-theme="dark"] #classSelectModal .modal-content,
+    [data-theme="dark"] #editStudentModal .modal-content {
+        background-color: #1e293b !important;
+        /* Force dark background */
+        color: #f7fafc !important;
+        /* Force light text */
+    }
+
+    .modal-backdrop {
+        background-color: rgba(0, 0, 0, 0.7) !important;
+        opacity: 0.7 !important;
+    }
+</style>
+{% endblock %}
+
+{% block modals %}
 <!-- Class Selection Modal -->
 <div class="modal fade" id="classSelectModal" tabindex="-1" aria-labelledby="classSelectModalLabel" aria-hidden="true"
     data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="classSelectModalLabel">Select Class</h5>
@@ -150,35 +211,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Auto-show class selection modal if no class is selected
-        {% if not selected_class %}
-        var classModal = new bootstrap.Modal(document.getElementById('classSelectModal'));
-        classModal.show();
-        {% endif %}
-
-        // Handle Edit Button Click
-        const editButtons = document.querySelectorAll('.edit-btn');
-        const editForm = document.getElementById('editStudentForm');
-        const editNameInput = document.getElementById('edit_name');
-        const editRollInput = document.getElementById('edit_roll');
-        const editClassIdInput = document.getElementById('edit_class_id');
-
-        editButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const studentId = this.getAttribute('data-id');
-                const name = this.getAttribute('data-name');
-                const roll = this.getAttribute('data-roll');
-                const classId = this.getAttribute('data-class');
-
-                editForm.action = `/edit_student/${studentId}`;
-                editNameInput.value = name;
-                editRollInput.value = roll;
-                editClassIdInput.value = classId;
-            });
-        });
-    });
-</script>
 {% endblock %}

@@ -57,13 +57,13 @@
 
         {% if report_data %}
         <div class="card shadow mt-4">
-            <div class="card-header bg-light">
+            <div class="card-header">
                 <h5 class="mb-0">Class Statistics (Total Lectures: {{ dates|length }})</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover text-center table-sm">
-                        <thead class="table-dark">
+                        <thead>
                             <tr>
                                 <th rowspan="2" class="align-middle">Roll No</th>
                                 <th rowspan="2" class="align-middle">Name</th>
@@ -75,7 +75,7 @@
                             </tr>
                             <tr>
                                 {% for date in dates %}
-                                <th style="font-size: 0.8rem; writing-mode: vertical-rl; transform: rotate(180deg);">{{
+                                <th style="font-size: 0.8rem; white-space: nowrap;">{{
                                     date.strftime('%d-%m') }}</th>
                                 {% endfor %}
                             </tr>

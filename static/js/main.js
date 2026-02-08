@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // --- Subject Filtering Logic ---
     const classSelect = document.getElementById('class_id');
     const subjectSelect = document.getElementById('subject_id');
 
@@ -32,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             // If the currently selected subject is now hidden (or if no class selected), reset selection
-            // We only reset if we actually have a value selected that is now invalid
             if (!currentSelectedValid && subjectSelect.value !== "") {
                 subjectSelect.value = "";
             }
@@ -43,5 +43,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Run on change
         classSelect.addEventListener('change', filterSubjects);
+    }
+
+    // --- Dark Mode Logic ---
+    const toggleButton = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    // Only proceed if the toggle button exists (it might not be on every page if base.html isn't updated yet, but we will update it)
+    if (toggleButton) {
+        const icon = toggleButton.querySelector('i');
+
+        // Check for saved user preference, if any, on load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateIcon(savedTheme);
+
+        toggleButton.addEventListener('click', () => {
+            // Add rotation animation
+            icon.classList.add('rotate');
+            setTimeout(() => {
+                icon.classList.remove('rotate');
+            }, 500); // Matches CSS animation duration
+
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                icon.classList.remove('bi-moon-fill');
+                icon.classList.add('bi-sun-fill');
+            } else {
+                icon.classList.remove('bi-sun-fill');
+                icon.classList.add('bi-moon-fill');
+            }
+        }
     }
 });
