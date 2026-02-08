@@ -2,7 +2,19 @@
 
 A web-based application built with Flask for managing student attendance, classes, subjects, and teachers. This system allows teachers to mark attendance, view reports, and export attendance data to Excel.
 
-![Dashboard Screenshot](static/images/screenshot.png)
+### Screenshots
+
+![Screenshot 1](static/images/Screenshot1.png)
+![Screenshot 2](static/images/Screenshot2.png)
+![Screenshot 3](static/images/Screenshot3.png)
+![Screenshot 4](static/images/Screenshot4.png)
+![Screenshot 5](static/images/Screenshot5.png)
+![Screenshot 6](static/images/Screenshot6.png)
+![Screenshot 7](static/images/Screenshot7.png)
+![Screenshot 8](static/images/Screenshot8.png)
+![Screenshot 9](static/images/Screenshot9.png)
+![Screenshot 10](static/images/Screenshot10.png)
+![Screenshot 11](static/images/Screenshot11.png)
 
 ## Features
 
